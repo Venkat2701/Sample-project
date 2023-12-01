@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Website Layout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-image: url("https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg");
+  background-size: cover;
+}
+
+/* Style the header */
+div.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  background-image: url("https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/09/featured-image-prettiest-cities.jpeg.jpg");
+ background-size: cover;
+   animation-name: example;
+ animation-duration: 8s;
+ animation-iteration-count: 8;
+}
+
+@keyframes example {
+ 0% { color:black; left: 0px; top: 0px; }  25% { color:green; left: 10px; top: 0px;  } 75% { color: blue; right: 200px; top: 0px;  } 100% { color: red; margin:auto; }
+ 
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 186px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+.topnav {
+    width:100%; 
+  }
+}
+.footer {
+  background-image: url("https://wealthynickel.com/wp-content/uploads/2023/03/shutterstock_536673289-scaled-e1680788020438-1024x576.webp");
+  background-size: cover;
+  padding: 10px;
+  text-align: center;
+}
+.footera {
+color:white;
+text-decoration: none;
+font-size: 20px; 
+}
+.topnav img { margin-left: 25px; padding: 0px 10px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Major cities</h1>
+</div>
+
+<div class="topnav">
+  <a href="https://www.london.gov.uk/" target="_blank">London</a>
+  <a href="https://www.france.fr/en/paris" target="_blank">Paris</a>
+  <a href="https://lacity.gov/" target="_blank">Los Angeles</a>
+</div>
+
+<div class="row">
+  <div class="column">
+    <h2>London</h2>
+    <p>London is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants. Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p> 
+  </div>
+  
+  <div class="column">
+    <h2>Paris</h2>
+    <p>Paris is the capital and most populous city of France. Situated on the Seine River, in the north of the country, it is in the centre of the Île-de-France region, also known as the région parisienne, "Paris Region".</p> <br>
+  </div>
+  
+  <div class="column">
+    <h2>Los Angeles</h2>
+    <p>The city of Los Angeles covers a total area of 502.7 square miles (1,302 km2), comprising 468.7 square miles (1,214 km2) of land and 34.0 square miles (88 km2) of water. The city extends for 44 miles (71 km) from north to south and for 29 miles (47 km) from east to west. The perimeter of the city is 342 miles (550 km).</p>
+  </div>
+</div>
+<div ><img class="column" src="https://cdn.britannica.com/28/18528-004-9C2C3B23/Temple-Bar-facade-Strand-Royal-Courts-of.jpg" height="260" width="340">
+<img class="column" src="https://t4.ftcdn.net/jpg/02/96/15/35/360_F_296153501_B34baBHDkFXbl5RmzxpiOumF4LHGCvAE.jpg" height="260" width="340">
+ <img class="column" src="https://www.cityyear.org/wp-content/uploads/2019/10/LosAngelesFA-9elliothaney1440.jpg" height="260" width="340">
+</div>
+<div class="footer">
+ <p>  <a class="footera" href="C:\Users\hp\Desktop\html\forms.html" target="_blank"> Contact Us </a> </p>
+</div>
+</body>
+</html>
+
+
