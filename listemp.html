@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ABC private limited</title>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    
+    <style>
+
+    body{
+    margin: 0;
+    background-image: url('ffi-practitioner-title-bg.jpg');
+    background-size: cover;
+        }
+                
+                
+    ul {
+    height: 86px;
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+    background-color: rgb(2, 2, 87);
+    }
+
+    li {
+    float: left;
+    
+    }
+
+    li a {
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+    background-color: rgb(2, 2, 87);
+    color: white;
+    border-radius: 10%;
+    }
+
+    .signin {
+        background-color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: navy;
+        padding: 8px 12px;
+        border-radius: 5%;
+        margin-top: 8px;
+        margin-right: 6px;
+    }
+
+
+
+
+    </style>    
+
+
+</head>
+
+<body>
+
+    <div>
+    
+        <ul>
+            <li style="float:left "><a href="adminlogin.html">Admin Access</a></li>
+            <li style="margin-left: 462px; font-size: 18px; letter-spacing: 1px;"><a href="#afterlogin"> EMPLOYEE LIST</a></li>
+           
+          
+            <li style="float:right "><a class="signin" href="index.html">Log out</a></li>
+            <li style="float:right "><a href="afterlogin.html">GoBack</a></li>
+            
+          </ul>  
+</div>
+<br>
+
+
+<div  class="container">
+    <table class="bordered centered highlight responsive-table">
+            <thead>
+               
+                <th>Employee ID</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>Email</th>
+                <th>Mobile No.</th>
+                <th>D.O.B</th>
+                
+            </thead>
+            <tbody id="tbody1"></tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+
+    import { getDatabase, ref, child, onValue, get }
+                        from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
+
+
+                        const firebaseConfig = {
+                        apiKey: "AIzaSyCzjQ3V3NmAkHRWsCN4lR3EaSfL-fFpoJ8",
+                        authDomain: "projectsbkv-fabfe.firebaseapp.com",
+                        databaseURL: "https://projectsbkv-fabfe-default-rtdb.firebaseio.com",
+                        projectId: "projectsbkv-fabfe",
+                        storageBucket: "projectsbkv-fabfe.appspot.com",
+                        messagingSenderId: "523632836066",
+                        appId: "1:523632836066:web:6994914a7de50e5f9a8dbb"
+                        };
+            
+              // Initialize Firebase
+                        const app = initializeApp(firebaseConfig);
+            
+                       
+            
+                        const db = getDatabase();
+                        
+
+
+
+            //------------- Filling the table----------//
+            
+                  var stdNo = 0;
+                  var tbody = document.getElementById('tbody1');
+            
+                  function AddItemToTable(name,roll,sec,gen,file,dob){
+                        let trow = document.createElement("tr");
+                        let td1 = document.createElement('td');
+                        let td2 = document.createElement('td');
+                        let td3 = document.createElement('td');
+                        let td4 = document.createElement('td');
+                        let td5 = document.createElement('td'); 
+                        let td6 = document.createElement('td');
+                        
+            
+                        td1.innerHTML=++stdNo;
+                        td2.innerHTML= name;
+                        td3.innerHTML= roll;
+                        td4.innerHTML= sec;
+                        td5.innerHTML= gen;
+                        td6.innerHTML= file;
+                        
+            
+                        trow.appendChild(td1);
+                        trow.appendChild(td2);
+                        trow.appendChild(td3);
+                        trow.appendChild(td4);
+                        trow.appendChild(td5);
+                        trow.appendChild(td6);
+                        
+                        
+            
+                        tbody.appendChild(trow);
+            
+            
+                  }
+            
+            
+                        function AddAllItemsToTable(TheStudent) {
+            
+                            stdNo=0;
+                            tbody.innerHTML="";
+                            TheStudent.forEach(element => {
+                                AddItemToTable(element.FIRSTNAME, element.LASTNAME, element.EMAIL, element.MOBILE, element.DOB);
+            
+                            });
+                        }
+            
+                        
+              
+                       
+            //--------------Getting all the data-------------//
+            
+                        function GetAllDataOnce(){
+                            const dbref = ref(db);
+            
+                            get(child(dbref, "Employee"))
+                            .then((snapshot)=> {
+                                var students =[];
+            
+                                snapshot.forEach(childSnapshot => {
+                                    students.push(childSnapshot.val());
+                                });
+            
+                                AddAllItemsToTable(students);
+                            });
+            
+            
+                        }
+            
+            
+                        function GetAllDataRealtime(){
+                            const dbref = ref(db,"Employee");
+            
+                            onValue(dbref,(snapshot)=> {
+                                var students =[];
+            
+                                snapshot.forEach(childSnapshot => {
+                                    students.push(childSnapshot.val());
+                                });
+            
+                                AddAllItemsToTable(students);                    
+            
+            
+            
+                            });
+            
+                            // get(child(dbref, "Employee"))
+                            // .then((snapshot)=> {
+                            //     var students =[];
+            
+                            //     snapshot.forEach(childSnapshot => {
+                            //         students.push(childSnapshot.val());
+                            //     });
+            
+                            //     AddAllItemsToTable(students);
+                            // });
+            
+            
+                        }
+            
+                        window.onload = GetAllDataRealtime;
+            
+            
+            </script>
+
+
+    
+</body>
+</html>
