@@ -77,6 +77,11 @@ const firebaseConfig = {
       // Don't continue running the code
     }
   
+    if (email != "admin@gmail.com") {
+      alert('Enter admin mailId')
+      return
+    }
+
     auth.signInWithEmailAndPassword(email, password)
     .then(function() {
       // Declare user variable
