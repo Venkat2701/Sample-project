@@ -98,10 +98,10 @@ const firebaseConfig = {
       window.location.href= "afterlogin.html"
   
     })
-    .catch(function(error) {
+  .catch(function(error) {
       // Firebase will use this to alert of its errors
       var error_code = error.code
-      var error_message = error.message
+      var error_message = "Invalid Username or Password"; 
   
       alert(error_message)
     })
