@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" href="The Must-Haves On Your Company's About Us Page.jpg" type="image/webp"/>
     <title>ABC private limited</title>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="icon" href="The Must-Haves On Your Company's About Us Page.jpg" type="image/webp"/>
+    
     <style>
 
     body{
@@ -93,6 +93,7 @@
                 <th>Email</th>
                 <th>Mobile No.</th>
                 <th>D.O.B</th>
+                <th> Age</th>
                 
             </thead>
             <tbody id="tbody1"></tbody>
@@ -134,14 +135,22 @@
                         const db = getDatabase();
                         
 
+        
+
+
+
+
+
+
+
 
 
             //------------- Filling the table----------//
             
-                  var stdNo = 0;
+                  var empNo = 0;
                   var tbody = document.getElementById('tbody1');
             
-                  function AddItemToTable(name,roll,sec,gen,file,dob){
+                  function AddItemToTable(fname,lname,email,mobile,dob,age){
                         let trow = document.createElement("tr");
                         let td1 = document.createElement('td');
                         let td2 = document.createElement('td');
@@ -149,14 +158,16 @@
                         let td4 = document.createElement('td');
                         let td5 = document.createElement('td'); 
                         let td6 = document.createElement('td');
+                        let td7 = document.createElement('td');
                         
             
-                        td1.innerHTML=++stdNo;
-                        td2.innerHTML= name;
-                        td3.innerHTML= roll;
-                        td4.innerHTML= sec;
-                        td5.innerHTML= gen;
-                        td6.innerHTML= file;
+                        td1.innerHTML=++empNo;
+                        td2.innerHTML= fname;
+                        td3.innerHTML= lname;
+                        td4.innerHTML= email;
+                        td5.innerHTML= mobile;
+                        td6.innerHTML= dob;
+                        td7.innerHTML= age;
                         
             
                         trow.appendChild(td1);
@@ -165,6 +176,7 @@
                         trow.appendChild(td4);
                         trow.appendChild(td5);
                         trow.appendChild(td6);
+                        trow.appendChild(td7);
                         
                         
             
@@ -174,12 +186,12 @@
                   }
             
             
-                        function AddAllItemsToTable(TheStudent) {
+                        function AddAllItemsToTable(TheEmployee) {
             
-                            stdNo=0;
+                            empNo=0;
                             tbody.innerHTML="";
-                            TheStudent.forEach(element => {
-                                AddItemToTable(element.FIRSTNAME, element.LASTNAME, element.EMAIL, element.MOBILE, element.DOB);
+                            TheEmployee.forEach(element => {
+                                AddItemToTable(element.FIRSTNAME, element.LASTNAME, element.EMAIL, element.MOBILE, element.DOB, element.AGE);
             
                             });
                         }
@@ -194,13 +206,13 @@
             
                             get(child(dbref, "Employee"))
                             .then((snapshot)=> {
-                                var students =[];
+                                var employees =[];
             
                                 snapshot.forEach(childSnapshot => {
-                                    students.push(childSnapshot.val());
+                                    employees.push(childSnapshot.val());
                                 });
             
-                                AddAllItemsToTable(students);
+                                AddAllItemsToTable(employees);
                             });
             
             
@@ -211,13 +223,13 @@
                             const dbref = ref(db,"Employee");
             
                             onValue(dbref,(snapshot)=> {
-                                var students =[];
+                                var employees =[];
             
                                 snapshot.forEach(childSnapshot => {
-                                    students.push(childSnapshot.val());
+                                    employees.push(childSnapshot.val());
                                 });
             
-                                AddAllItemsToTable(students);                    
+                                AddAllItemsToTable(employees);                    
             
             
             
