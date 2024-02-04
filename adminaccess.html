@@ -6,7 +6,7 @@
     <title>ABC Private Limited</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<link rel="icon" href="The Must-Haves On Your Company's About Us Page.jpg" type="image/webp"/>
+        <link rel="icon" href="The Must-Haves On Your Company's About Us Page.jpg" type="image/webp"/>
         <style>
             body{
                 margin: 0;
@@ -200,21 +200,23 @@ function addEmployee(){
     var emailAdd = document.getElementById("email_address").value;
     var mobNo = document.getElementById("mobile_number").value;
     var doB = document.getElementById("date_of_birth").value;
+    var age = calculateAge(doB);
     var empNo = document.getElementById("empNoHidden").value;
     if(null == empNo || empNo == ""){
         empNo = "1";
     }
-    writeEmployeeData(empNo,firstName,lastName,emailAdd,mobNo,doB);
+    writeEmployeeData(empNo,firstName,lastName,emailAdd,mobNo,doB,age);
 }
 
 var firebaseRef = firebase.database().ref();
-function writeEmployeeData(empId,firstName,lastName,emailAdd,mobNo,doB) {
+function writeEmployeeData(empId,firstName,lastName,emailAdd,mobNo,doB,age) {
   firebaseRef.child("Employee").child(empId).set({
       FIRSTNAME : firstName,
       LASTNAME : lastName,
       MOBILE : mobNo,
       EMAIL : emailAdd,
-      DOB : doB
+      DOB : doB,
+      AGE : age 
   });
 }
 
@@ -222,6 +224,19 @@ function deleteEmp(empId){
     firebaseRef.child("Employee").child(empId).remove();
     viewEmployee();
 }
+
+function calculateAge(doB) {
+                        const dobDate = new Date(doB);
+                        const currentDate = new Date();
+  
+                          // Calculate difference in milliseconds
+                         const difference = currentDate - dobDate;
+
+                          // Convert difference to years
+                         const age = Math.floor(difference / (365.25 * 24 * 60 * 60 * 1000));
+
+                         return age;
+                     }
 
 function updateEmp(empId,firstName,lastName,email,mobNo,doB){
     document.getElementById("first_name").value = firstName;
@@ -234,6 +249,7 @@ function updateEmp(empId,firstName,lastName,email,mobNo,doB){
     document.getElementById("addEmployeeDiv").style.display = "block";
 
 }
+
 
 
 
