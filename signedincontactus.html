@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="The Must-Haves On Your Company's About Us Page.jpg" type="image/webp"/>
+  
 <title>ABC Private Limited</title>
 <style>
 body{
@@ -140,10 +141,10 @@ fieldset {
 <div>
     
         <ul>
-            <li><a href="signedinindex.html">HOME</a></li>
-            <li><a href="signedinaboutus.html">ABOUT</a></li>
-            <li><a href="signedincontactus.html">CONTACT US</a></li>
-            <li><a href="afterlogin.html"> EMPLOYEE MANAGEMENT</a></li>
+            <li><a href="index.html">HOME</a></li>           
+            <li><a href="aboutus.html">ABOUT</a></li>
+            <li><a href="contactus.html">CONTACT US</a></li>
+            <li><a href="#employee" onclick="alert('You are not signed in')"> EMPLOYEE MANAGEMENT</a></li>
             <li style="float:right "><a class="signin" href="index.html" >Log Out</a></li>
           </ul>    
 </div>
@@ -151,26 +152,26 @@ fieldset {
 <div>
 
     <div class="container">  
-        <form id="contact" action="" method="post">
+        <form id="contact" name="myform" action="" method="post" onsubmit="return validateemail();">
           <h3>Quick Contact</h3>
           <h4>Contact us today, and get reply with in 24 hours! For any queries call us on +91-9379585030</h4>
           <fieldset>
-            <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+            <input placeholder="Your name" id="name" type="text" tabindex="1" required autofocus>
           </fieldset>
           <fieldset>
-            <input placeholder="Your Email Address" type="email" tabindex="2" required>
+            <input placeholder="Your Email Address"  id="email" type="email" tabindex="2" required>
           </fieldset>
           <fieldset>
-            <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+            <input placeholder="Your Phone Number" id="phone" type="tel" tabindex="3" required>
           </fieldset>
           <fieldset>
-            <input placeholder="Your Web Site starts with http://" type="url" tabindex="4" required>
+            <input placeholder="Your Web Site starts with http://" id="web" type="text" tabindex="4" required>
           </fieldset>
           <fieldset>
-            <textarea placeholder="Type your Message Here...." tabindex="5" required></textarea>
+            <textarea placeholder="Type your Message Here...." id="text" tabindex="5" required></textarea>
           </fieldset>
           <fieldset>
-            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            <button name="submit" type="submit" id="submit" data-submit="...Sending">Submit</button>
           </fieldset>
         </form>
        
@@ -178,6 +179,9 @@ fieldset {
       </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js">  </script>
+<script src="contactus.js" ></script>
+
 
 </body>
 </html>
